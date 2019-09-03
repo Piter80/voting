@@ -30,8 +30,6 @@ public final class TestData {
     private TestData() {
     }
 
-
-
     public static void assertMatch(User actual, User expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "password");
     }
@@ -51,6 +49,4 @@ public final class TestData {
     public static ResultMatcher getUserMatcher(User expected) {
         return result -> assertMatch(readFromJsonMvcResult(result, User.class), expected);
     }
-
-
 }

@@ -2,7 +2,6 @@ package ru.zimin.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import ru.zimin.model.Dish;
 import ru.zimin.util.exception.NotFoundException;
 
