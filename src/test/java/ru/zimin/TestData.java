@@ -2,6 +2,7 @@ package ru.zimin;
 
 import org.springframework.test.web.servlet.ResultMatcher;
 import ru.zimin.model.*;
+import ru.zimin.to.UserTo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,6 +27,14 @@ public final class TestData {
     public static Dish DISH6 = new Dish(1005, "Fat Pa", PIGKING, new BigDecimal("59.99"), LocalDateTime.of(2019, 5, 30, 10, 0));
     public static final Dish CREATED_DISH = new Dish(1006, "CreatedDish", BREACKINGEAT, new BigDecimal("60"), LocalDateTime.of(2019, 5, 30, 10, 0));
     public static final Dish UPDATED_DISH = new Dish(DISH1.getId(), "UpdatedBreakfast", DISH1.getRestaurant(), DISH1.getPrice(), DISH1.getCreated());
+
+    public static final User USER = new User(1000, "User", "user@ya.ru", "pass", Role.ROLE_USER);
+    public static final UserTo CREATED_USER_TO = new UserTo(null, "Created", "created@gmail.com", "created");
+    public static final UserTo UPDATED_USER_TO = new UserTo(null, "Updated", "user@ya.ru", "pass");
+    public static final User ADMIN = new User(1001, "Admin", "admin@ya.ru", "pass", Role.ROLE_ADMIN, Role.ROLE_USER);
+    public static final User CREATED_USER = new User(1002, "Created", "created@gmail.com", "created", Role.ROLE_USER);
+    public static final User UPDATED_USER = new User(USER.getId(), "Updated", USER.getEmail(), USER.getPassword(), Role.ROLE_USER);
+
 
     private TestData() {
     }
