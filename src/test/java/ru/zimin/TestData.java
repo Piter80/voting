@@ -35,6 +35,10 @@ public final class TestData {
     public static final User CREATED_USER = new User(1002, "Created", "created@gmail.com", "created", Role.ROLE_USER);
     public static final User UPDATED_USER = new User(USER.getId(), "Updated", USER.getEmail(), USER.getPassword(), Role.ROLE_USER);
 
+    public static final Vote VOTE1 = new Vote(1000, BREACKINGEAT, ADMIN, LocalDateTime.of(2019, 5, 30, 10, 0));
+    public static final Vote VOTE2 = new Vote(1001, PIGKING, USER, LocalDateTime.of(2019, 5, 30, 10, 0));
+    public static final Vote CREATED_VOTE = new Vote(1002, BREACKINGEAT, USER, LocalDateTime.of(2019, 5, 30, 10, 0));
+    public static final Vote UPDATED_VOTE = new Vote(VOTE1.getId(), BREACKINGEAT, VOTE1.getUser(), VOTE1.getDateTime());
 
     private TestData() {
     }
