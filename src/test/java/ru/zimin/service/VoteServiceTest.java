@@ -1,6 +1,7 @@
 package ru.zimin.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import ru.zimin.model.Vote;
@@ -15,14 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static ru.zimin.TestData.*;
 
 class VoteServiceTest extends AbstractServiceTest {
-
-    private final VoteService service;
-
     @Autowired
-    public VoteServiceTest(VoteService service) {
-        this.service = service;
-    }
-
+    private VoteService service;
 
     @Test
     void get() {
@@ -35,7 +30,6 @@ class VoteServiceTest extends AbstractServiceTest {
     void getNotFound() {
         assertThrows(NotFoundException.class, () -> service.get(100));
     }
-
 
     @Test
     void delete() {

@@ -38,6 +38,7 @@ public class VoteService{
     @Autowired
     private CrudUserRepository crudUserRepository;
 
+    @CacheEvict( value = "daily_votes", allEntries = true)
     public Vote update(Vote vote, int id) {
         Vote toUpdate = crudVoteRepository.findById(vote.getId()).orElse(null);
         Assert.notNull(toUpdate, "vote must not be null");
@@ -47,6 +48,7 @@ public class VoteService{
         return crudVoteRepository.save(toUpdate);
     }
 
+    @CacheEvict( value = "daily_votes", allEntries = true)
     public Vote create(Vote vote) {
         if (vote.getDateTime() == null) {
             vote.setDateTime(LocalDateTime.now());
@@ -54,6 +56,7 @@ public class VoteService{
         return crudVoteRepository.save(vote);
     }
 
+    @CacheEvict( value = "daily_votes", allEntries = true)
     public Vote createForUser(int restId, int userId) {
         List<Vote> votesToday = getBetweenDatesWithUserUtil(1000, LocalDate.now(), LocalDate.now());
         if (votesToday.isEmpty()) {
@@ -82,6 +85,7 @@ public class VoteService{
         } else throw new VotingTimeViolationException("you can change your daily vote only before 11:00");
     }
 
+    @CacheEvict( value = "daily_votes", allEntries = true)
     public void delete(int id) {
         crudVoteRepository.deleteById(id);
     }
@@ -92,6 +96,7 @@ public class VoteService{
         return vote;
     }
 
+    @Cacheable("daily_votes")
     public List<Vote> getDaily(LocalDate localDate) {
         List<Vote> votes = crudVoteRepository.getAllBetweenDate(LocalDateTime.of(localDate, LocalTime.MIN), LocalDateTime.of(localDate, LocalTime.MAX)).orElse(null);
         Assert.notNull(votes, "can't find daily votes of: " + localDate);
@@ -131,6 +136,7 @@ public class VoteService{
         return crudVoteRepository.getAllBetweenDateWithUserIdUtil(userId, LocalDateTime.of(startDate, LocalTime.MIN), LocalDateTime.of(endDate, LocalTime.MAX));
     }
 
+    @Cacheable("vote")
     public List<MenuTo> getAllRestaurantsWithMenu() {
         List<MenuTo> listMenu = new ArrayList<>();
         var restaurants = crudRestaurantRepository.findAll();
