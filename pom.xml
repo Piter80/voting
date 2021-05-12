@@ -47,7 +47,7 @@
         <!--Tools-->
         <ehcache.version>3.6.1</ehcache.version>
         <!--SPRING-->
-        <spring.version>5.1.2.RELEASE</spring.version>
+        <spring.version>5.2.10.RELEASE</spring.version>
         <spring-data-jpa.version>2.1.10.RELEASE</spring-data-jpa.version>
         <!--JSON-->
         <jackson-json.version>2.9.9</jackson-json.version>
